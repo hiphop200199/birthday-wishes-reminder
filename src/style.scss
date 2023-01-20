@@ -1,12 +1,25 @@
+@use "sass:math";
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+$transition:1s;
+$title-font-size:5vw;
+$button-font-size:1.5vw;
+$input-font-size:2vw;
+$bg-move-speed:60s;
+$bg-fadein-speed:3s;
+@mixin Set($color:aliceblue,$bgColor:transparent,$trans:$transition){
+    color:$color;
+    background-color:$bgColor;
+    transition: $trans;
+}
 *{
    padding: 0;
    margin: 0;
    box-sizing: border-box;
    font-family: 'Handlee', cursive;
-   color: aliceblue;
+  @include Set;
    text-shadow: 1px 0px 5px aliceblue;
- 
+   user-select: none;
+  
 }
 
 article{
@@ -17,34 +30,60 @@ article{
    min-height:100vh ;
    background-image: url(./assets/aurora.webp);
    background-position:bottom;
-   animation: bgmove 60s linear infinite ;
+   opacity: 0;
+   animation: bgmove $bg-move-speed linear infinite,
+                       fadein    $bg-fadein-speed   linear forwards 
+   ;
+   & button{
+    border: 2px solid aliceblue;
+    box-shadow:1px 0px 5px 0px aliceblue; 
+    font-size: $button-font-size;
+    border-radius: 0.5vmax;
+    padding: 0.1vmax 1vmax 0.1vmax 1vmax;
+    cursor: pointer;
+    filter: blur(1px);
+    &:hover{
+        background-color: rgba(240, 248, 255, 0.2);
+        filter: blur(0px);
+    }
+   }
+   
    & h1{
-    font-size: 5vw;
+    font-size: $title-font-size;
    
    } 
    & input{
-    font-size: 2vw;
+    font-size: $input-font-size;
     border-radius: 100vmax;
     padding: 0.5vmax;
-    background-color: transparent;
     border: 2px solid aliceblue;
     box-shadow:1px 0px 5px 0px aliceblue; 
+    filter: blur(1px);
     &::placeholder{
         color: aliceblue;
     }
     &:focus{
         outline: none;
+        filter: blur(0px);
     }
    }
-   & button{
-    @extend input;
-    font-size: 1.5vw;
+   
+   & .bubble{
     border-radius: 0.5vmax;
-    padding: 0.1vmax 1vmax 0.1vmax 1vmax;
-    user-select: none;
-    cursor: pointer;
+    padding: 0.3vmax 1vmax 0.3vmax 1vmax;
+    width: fit-content;
+    height: fit-content;
+    white-space:nowrap;
+    border: 2px solid aliceblue;
+    box-shadow:1px 0px 5px 0px aliceblue; 
+    font-size:$button-font-size;
    }
 }
    @keyframes bgmove {
     to{ background-position: top;}
 }
+@keyframes fadein {
+    to{ opacity: 1;}
+}
+
+
