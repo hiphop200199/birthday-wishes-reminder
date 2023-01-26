@@ -6,9 +6,9 @@ $button-font-size:1.5vw;
 $input-font-size:2vw;
 $bg-move-speed:60s;
 $bg-fadein-speed:3s;
-$title-font-size-mobile:20vw;
-$button-font-size-mobile:5vw;
-$input-font-size-mobile:6.5vw;
+$title-font-size-mobile:13.5vw;
+$button-font-size-mobile:5.5vw;
+$input-font-size-mobile:7vw;
 @mixin Set($color:aliceblue,$bgColor:transparent,$trans:$transition){
     color:$color;
     background-color:$bgColor;
@@ -99,6 +99,9 @@ article{
         & input{
             font-size: $input-font-size-mobile;
         }
+        & .bubble{
+            font-size:$button-font-size-mobile;
+           }
     }
 }
 

@@ -1,6 +1,5 @@
 
 
-//data.subscribe(()=>{localStorage.setItem("wish","get a job")});
 
 import { localStore } from './localStore.js'
 
